@@ -1,0 +1,49 @@
+
+import java.util.Scanner;
+
+public class task1 {
+
+    public static void main(String[] args) {
+
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("enter text");
+        String T = reader.nextLine();
+        
+        System.out.println("enter pattern");
+        String P = reader.nextLine();
+
+        int result = BFstring(T, P); //the index 
+
+        System.out.println("the pattern:"+P);
+        if (result != -1) {
+            System.out.println("the pattern is found at index: " + result);
+        } else {
+            System.out.println("Pattern not found in the text.");
+        }
+
+    }
+
+    public static int BFstring(String T, String P) {
+
+        int n = T.length(); // n = length of text
+        int m = P.length(); //m= length of pattern
+        
+        //n-m ensure that the pattern is checked in for all possible starting points in text
+        //i starting position in text
+        //j starting position in pattern
+        //t.charat check all chars in text if it matches in the pattern
+
+        for (int i = 0; i <= (n - m); i++) {  
+            int j = 0;
+            while (j < m && T.charAt(i + j) == P.charAt(j)) {
+                j++;
+            }
+            if (j == m) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+}
